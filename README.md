@@ -3,6 +3,8 @@
 This plugin provides basic tasks for PHP project. Currently this list includes
 
  - Syntax verification of all files in project
+ - PHPMD execution
+ - Run test through PHPUnit
 
 ## Usage
 
