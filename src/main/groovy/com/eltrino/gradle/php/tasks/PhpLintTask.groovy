@@ -27,11 +27,11 @@ import org.gradle.api.tasks.*
 
 class PhpLintTask extends SourceTask {
     String group = 'verification'
-
+    
     @TaskAction
     def run() throws TaskExecutionException {
         source.getFiles().each { file ->
-            def process = "php -l ${file}".execute()
+            def process = (project.php.phpExecutableLocation+" -l ${file}").execute()
             process.waitFor()
             if (process.exitValue())
                 throw new TaskExecutionException(this, new Throwable(process.err.text))

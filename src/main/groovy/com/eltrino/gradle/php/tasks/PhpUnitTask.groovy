@@ -37,7 +37,7 @@ class PhpUnitTask extends DefaultTask {
                 return
             }
             source.php.getSrcDirs().each { dir ->
-                Process process = new ProcessBuilder("vendor/bin/phpunit", "-c", "${dir}")
+                Process process = new ProcessBuilder(project.php.phpUnitExecutableLocation, "${dir}")
                         .redirectErrorStream(true)
                         .start()
                 process.inputStream.eachLine {println it}

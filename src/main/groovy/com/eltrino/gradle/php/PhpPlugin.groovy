@@ -43,7 +43,7 @@ class PhpPlugin implements Plugin<Project> {
     private static Logger logger = Logging.getLogger(PhpPlugin)
     private Project project
     private final FileResolver fileResolver
-
+    
     @Inject
     PhpPlugin(FileResolver fileResolver) {
         this.fileResolver = fileResolver
@@ -51,8 +51,8 @@ class PhpPlugin implements Plugin<Project> {
 
     void apply(final Project project) {
         this.project = project
+        project.extensions.create("php", PhpPluginExtension)
         project.plugins.apply(JavaBasePlugin.class)
-
         project.convention.getPlugin(JavaPluginConvention.class).sourceSets.all { SourceSet sourceSet ->
             sourceSet.convention.plugins.php = new DefaultPhpSourceSet(sourceSet.displayName, fileResolver)
             sourceSet.allSource.source(sourceSet.php)
