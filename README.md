@@ -39,7 +39,7 @@ buildscript {
 Apply plugin itself
 
 ```
-apply plugin: 'php'
+apply plugin: 'com.eltrino.gradle.php'
 ```
 
 ### Configuration
@@ -57,9 +57,18 @@ sourceSets {
 }
 ```
 
+```
+//optional
+php{
+    phpExecutableLocation = '{your-path-to-php(.exe)}' // defaults to 'php'
+    phpUnitExecutableLocation='{your-path-to-phpunit(.bat)}' // defaults to 'vendor/bin/phpunit'
+    pmdExecutableLocation = '{your-path-to-phpmd(.bat)}' // defaults to 'vendor/bin/phpmd'
+    pmdReportFile = '{your-path-to-pmd.xml}' // defaults to 'pmd.xml'
+}
+```
+
 ## Todo
 
 - Add more tasks ...
-- Support different location for tools (instead of hardcoded vendor path) 
 - Support exclude option for tasks
 - Cover functionality by tests

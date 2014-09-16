@@ -26,12 +26,11 @@ package com.eltrino.gradle.php.tasks
 import org.gradle.api.tasks.*
 
 class PhpMdTask extends SourceTask {
-    private String reportFile = "pmd.xml"
     String group = ''
 
     @TaskAction
     def run() {
-        Process process = "vendor/bin/phpmd ${source.getAsPath().replace(':', ',')} xml codesize,unusedcode,naming,controversial,design --reportfile ${reportFile}".execute()
+        Process process = (project.php.pmdExecutableLocation+" ${source.getAsPath().replace(':', ',')} xml codesize,unusedcode,naming,controversial,design --reportfile ${project.php.pmdReportFile}").execute()
         process.waitFor()
         if (process.exitValue())
             println "Problems in source code were found. Check report in ${reportFile}"
